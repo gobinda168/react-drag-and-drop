@@ -1,0 +1,32 @@
+.layout {
+  margin:1rem;
+  height: 95vh;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 300px auto 300px;
+
+  .quarter {
+    width: 200px;
+    height: 300px;
+    border: 1px solid red;
+  }
+  .quarter1 {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .quarter2 {
+    // grid-area: quarter2;
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+  .quarter3 {
+    // grid-area: quarter3;
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+  .quarter4 {
+    // grid-area: quarter4;
+    grid-column: 3/4;
+    grid-row: 3/4;
+  }
+}

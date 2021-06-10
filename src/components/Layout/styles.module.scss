@@ -1,13 +1,15 @@
+@import '../../styles/mixins.scss';
+
 .layout {
-  margin:1rem;
+  margin: 1rem;
   height: 95vh;
   display: grid;
   grid-template-columns: 200px 1fr 200px;
   grid-template-rows: 300px auto 300px;
 
   .quarter {
-    width: 200px;
-    height: 300px;
+    width: toRem(200);
+    height: toRem(300);
     border: 1px solid red;
   }
   .quarter1 {
@@ -29,4 +31,8 @@
     grid-column: 3/4;
     grid-row: 3/4;
   }
+}
+
+.transition{
+  animation: appear 1s ease-in-out 1;
 }

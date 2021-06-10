@@ -6,11 +6,13 @@
   display: grid;
   grid-template-columns: 200px 1fr 200px;
   grid-template-rows: 300px auto 300px;
-
+  background-color: #fefefe;
   .quarter {
     width: toRem(200);
     height: toRem(300);
-    border: 1px solid red;
+    // border: 1px solid black;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
   }
   .quarter1 {
     grid-column: 1/2;

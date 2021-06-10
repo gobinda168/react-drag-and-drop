@@ -7,16 +7,18 @@ interface IProps {
   videoRef: any;
 }
 const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
-  const handleDragStart = (e: React.DragEvent) => {
+  const handleDragStart = (e: any) => {
     e.preventDefault();
     const target = e.target as HTMLElement;
     target.style.opacity = '0';
+    videoRef.current.pause();
   };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
     target.style.opacity = '1';
+    videoRef.current.play();
     target.style.border = 'unset';
   };
 
@@ -26,13 +28,19 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
       id="video_id"
       muted
       controls={false}
-      autoPlay
+      // autoPlay
       playsInline
       width="200"
       className={styles.video}
       draggable
       onDrag={handleDragStart}
       onDragEnd={handleDragOver}
+      onTouchMove={handleDragStart}
+      onClick={() =>
+        videoRef.current.paused
+          ? videoRef.current.play()
+          : videoRef.current.pause()
+      }
     >
       <source src={constants.VIDEO_SRC} type="video/mp4" />
     </video>

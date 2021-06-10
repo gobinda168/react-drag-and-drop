@@ -1,4 +1,9 @@
 @function toRem($size) {
   $remValue: ($size / 16) + rem;
-  @return $remValue
+  @return $remValue;
+}
+@mixin onDesktop {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
 }

@@ -6,9 +6,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fefefe;
+  position: relative;
+  overflow-y: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.demo {
+  /* opacity: 0; */
+  /* animation: appear 1.5s ease-in-out; */
+  /* transition: opacity 2s ease-in-out; */
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

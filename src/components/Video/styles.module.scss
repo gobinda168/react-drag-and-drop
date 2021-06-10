@@ -1,5 +1,14 @@
-.video{
-  min-height: 300px;
+@import '../../styles/mixins.scss';
+
+.video {
+  min-height: 200px;
+  max-width: 130px;
   object-fit: cover;
   cursor: move;
+  position: absolute;
+  @include onDesktop() {
+    min-height: 300px;
+    max-width: unset;
+    position: relative;
+  }
 }

@@ -10,24 +10,24 @@ const Layout: React.FC = () => {
   return (
     <div className={styles.layout}>
       <Corner
-        id="quarter1"
+        id="quarter"
         className={clsx(styles.quarter1, styles.quarter)}
         videoRef={videoRef}
       />
       <Corner
-        id="quarter2"
+        id="quarter"
         className={clsx(styles.quarter2, styles.quarter)}
         videoRef={videoRef}
       />
       <Corner
-        id="quarter3"
+        id="quarter"
         className={clsx(styles.quarter3, styles.quarter)}
         videoRef={videoRef}
       >
         <Video videoRef={videoRef} />
       </Corner>
       <Corner
-        id="quarter4"
+        id="quarter"
         className={clsx(styles.quarter4, styles.quarter)}
         videoRef={videoRef}
       />

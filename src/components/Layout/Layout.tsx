@@ -5,48 +5,44 @@ import styles from './styles.module.scss';
 import Corner from '../Corner/Corner';
 
 const Layout: React.FC = () => {
+  const videoRef = useRef();
+
   const handleDrop = (e: any) => {
     e.preventDefault();
+    if (e.target.childNodes.length > 0) return;
     e.target.appendChild(videoRef.current);
-    // e.target.appendChild(document.getElementById(data));
+    e.target.childNodes[0].style.opacity = '1';
     e.target.style.border = '1px solid red';
   };
-  const handleDragOver = (e: any) => {
+  const handleDragOver = (e: React.DragEvent) => {
+    const target = e.target as HTMLElement;
     e.preventDefault();
-    console.log(videoRef, 'over');
-    // videoRef.current.style.display = 'block';
-    e.target.style.border = '1px dashed black';
+    target.style.border = '1px dashed black';
   };
 
-  const videoRef = useRef();
-  const containerRef = useRef();
   return (
     <div className={styles.layout}>
-      <div
+      <Corner
+        id="quarter1"
         className={clsx(styles.quarter1, styles.quarter)}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        // onDragStart={handleDragStart}
+        videoRef={videoRef}
       />
-      <div
+      <Corner
+        id="quarter2"
         className={clsx(styles.quarter2, styles.quarter)}
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        // onDragStart={handleDragStart}
+        videoRef={videoRef}
       />
-      <div
+      <Corner
+        id="quarter3"
         className={clsx(styles.quarter3, styles.quarter)}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        // onDragStart={handleDragStart}
+        videoRef={videoRef}
       >
         <Video videoRef={videoRef} />
-      </div>
-      <div
+      </Corner>
+      <Corner
+        id="quarter4"
         className={clsx(styles.quarter4, styles.quarter)}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        // onDragStart={handleDragStart}
+        videoRef={videoRef}
       />
     </div>
   );

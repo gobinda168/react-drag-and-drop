@@ -1,26 +1,34 @@
 import React, { ReactNode } from 'react';
 
 interface IProps {
-  children: ReactNode;
-  customClass: string;
+  id: string;
+  // eslint-disable-next-line react/require-default-props
+  children?: ReactNode;
+  className: string;
+  videoRef: any;
 }
-const Corner: React.FC<IProps> = ({ children, customClass }: IProps) => {
+const Corner: React.FC<IProps> = ({
+  id,
+  children,
+  className,
+  videoRef,
+}: IProps) => {
   const handleDrop = (e: any) => {
     e.preventDefault();
-    console.log(e, 'drop');
-    const data = e.dataTransfer.getData('video_id');
-    // e.target.appendChild(document.getElementById(data));
-    const video = document.getElementById(data);
-    // video.style.display = 'block';
-    console.log(video, data, 'video');
+    if (e.target.childNodes.length > 0) return;
+    e.target.appendChild(videoRef.current);
+    e.target.childNodes[0].style.opacity = '1';
+    e.target.style.border = '1px solid red';
   };
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    console.log('over');
+  const handleDragOver = (e: React.DragEvent) => {
+    const target = e.target as HTMLElement;
+    e.preventDefault();
+    target.style.border = '1px dashed black';
   };
   return (
     <div
-      className={customClass}
+      id={id}
+      className={className}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
     >

@@ -1,21 +1,22 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import constants from '../../constants';
 
 interface IProps {
   videoRef: any;
 }
 const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
-  const handleDragStart = (e: any) => {
+  const handleDragStart = (e: React.DragEvent) => {
     e.preventDefault();
-    e.dataTransfer.setData('video_id', e.target.id);
-    // console.log(e.target.id, 'drag start');
-    // setTimeout(() => {
-    //   e.target.style.display = 'none';
-    // }, 0);
+    const target = e.target as HTMLElement;
+    target.style.opacity = '0';
   };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.stopPropagation();
+    const target = e.target as HTMLElement;
+    target.style.opacity = '1';
+    target.style.border = 'unset';
   };
 
   return (
@@ -30,12 +31,9 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
       className={styles.video}
       draggable
       onDrag={handleDragStart}
-      onDragOver={handleDragOver}
+      onDragEnd={handleDragOver}
     >
-      <source
-        src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
-        type="video/mp4"
-      />
+      <source src={constants.VIDEO_SRC} type="video/mp4" />
     </video>
   );
 };

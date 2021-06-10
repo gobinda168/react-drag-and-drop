@@ -1,4 +1,6 @@
 export default {
   VIDEO_SRC:
-    'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+  POSTER:
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg',
 };

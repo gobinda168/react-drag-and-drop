@@ -28,7 +28,7 @@ const Corner: React.FC<IProps> = ({
     target.style.border = '2px dashed green';
   };
 
-  const handleDragLeave = (e: any) => {
+  const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     const target = e.target as HTMLElement;
     target.style.border = 'unset';

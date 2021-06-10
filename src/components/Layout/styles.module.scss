@@ -2,7 +2,7 @@
 
 .layout {
   margin: 1rem;
-  max-height: 100%;
+  height: 95vh;
   display: grid;
   grid-template-columns: 150px 1fr 150px;
   grid-template-rows: 300px 1fr 300px;
@@ -39,6 +39,7 @@
     .quarter {
       width: toRem(200);
       height: toRem(300);
+      border: unset;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
   }

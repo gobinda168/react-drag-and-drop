@@ -18,16 +18,17 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
     target.style.opacity = '1';
-    videoRef.current.play();
     target.style.border = 'unset';
   };
 
   const handleTouchStart = (e: any) => {
-    // console.log(e);
+    // get initial position
   };
-  const handleTouchMove = (e: any) => {
-    // pause video
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    // pause video while dragging
     videoRef.current.pause();
+    const target = e.target as HTMLElement;
 
     // Prevent scrolling
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -39,14 +40,14 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
     };
 
     const touchLocation = e.targetTouches[0];
-    const width = e.target.offsetWidth;
-    const height = e.target.offsetHeight;
+    const width = target.offsetWidth;
+    const height = target.offsetHeight;
 
-    e.target.style.width = `${width}px`;
-    e.target.style.height = `${height}px`;
-    e.target.style.position = 'fixed';
-    e.target.style.left = `${touchLocation.clientX - width / 2}px`;
-    e.target.style.top = `${touchLocation.clientY - height / 2}px`;
+    target.style.width = `${width}px`;
+    target.style.height = `${height}px`;
+    target.style.position = 'fixed';
+    target.style.left = `${touchLocation.clientX - width / 2}px`;
+    target.style.top = `${touchLocation.clientY - height / 2}px`;
   };
   const handleTouchEnd = (e: any) => {
     const videoElement = e.target.getBoundingClientRect();
@@ -75,14 +76,17 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
       e.target.style.top = `${y2}px`;
     });
   };
+  const handleVideoClick = () => {
+    const video = videoRef.current;
+    return video.paused ? video.play() : video.pause();
+  };
   return (
+    // eslint-disable-next-line jsx-a11y/media-has-caption
     <video
       ref={videoRef}
       id="video_id"
-      muted
       controls={false}
       loop
-      // autoPlay={false}
       playsInline
       width="200"
       className={styles.video}
@@ -92,11 +96,7 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      onClick={() =>
-        videoRef.current.paused
-          ? videoRef.current.play()
-          : videoRef.current.pause()
-      }
+      onClick={handleVideoClick}
       poster={constants.POSTER}
     >
       <source src={constants.VIDEO_SRC} type="video/mp4" />

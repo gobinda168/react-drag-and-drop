@@ -49,9 +49,9 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
     e.target.style.top = `${touchLocation.clientY - height / 2}px`;
   };
   const handleTouchEnd = (e: any) => {
-    const box1 = e.target.getBoundingClientRect();
-    const x1 = box1.left;
-    const y1 = box1.top;
+    const videoElement = e.target.getBoundingClientRect();
+    const x1 = videoElement.left;
+    const y1 = videoElement.top;
     const h1 = e.target.offsetHeight;
     const w1 = e.target.offsetWidth;
     const b1 = y1 + h1;
@@ -60,9 +60,9 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
     const targets = document.querySelectorAll('#quarter');
     // eslint-disable-next-line consistent-return
     targets.forEach((target: any) => {
-      const box2 = target.getBoundingClientRect();
-      const x2 = box2.left;
-      const y2 = box2.top;
+      const divElement = target.getBoundingClientRect();
+      const x2 = divElement.left;
+      const y2 = divElement.top;
       const h2 = target.offsetHeight;
       const w2 = target.offsetWidth;
       const b2 = y2 + h2;
@@ -71,7 +71,8 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
         return false;
       }
       target.appendChild(e.target);
-      // console.log(target);
+      e.target.style.left = `${x2}px`;
+      e.target.style.top = `${y2}px`;
     });
   };
   return (

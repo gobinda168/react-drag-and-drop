@@ -8,7 +8,7 @@ const Video: React.FC<IProps> = ({ videoRef }: IProps) => {
   const handleDragStart = (e: any) => {
     e.preventDefault();
     e.dataTransfer.setData('video_id', e.target.id);
-    console.log(e.target.id, 'drag start');
+    // console.log(e.target.id, 'drag start');
     // setTimeout(() => {
     //   e.target.style.display = 'none';
     // }, 0);

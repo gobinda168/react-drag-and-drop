@@ -7,39 +7,47 @@ import Corner from '../Corner/Corner';
 const Layout: React.FC = () => {
   const handleDrop = (e: any) => {
     e.preventDefault();
-    e.target.style.opacity = '1';
+    e.target.appendChild(videoRef.current);
     // e.target.appendChild(document.getElementById(data));
+    e.target.style.border = '1px solid red';
   };
   const handleDragOver = (e: any) => {
     e.preventDefault();
     console.log(videoRef, 'over');
-    e.target.classList.add('transition');
-    e.target.appendChild(videoRef.current);
     // videoRef.current.style.display = 'block';
+    e.target.style.border = '1px dashed black';
   };
 
   const videoRef = useRef();
   const containerRef = useRef();
   return (
     <div className={styles.layout}>
-      <Corner customClass={clsx(styles.quarter1, styles.quarter)}>1</Corner>
+      <div
+        className={clsx(styles.quarter1, styles.quarter)}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        // onDragStart={handleDragStart}
+      />
       <div
         className={clsx(styles.quarter2, styles.quarter)}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        // onDragStart={handleDragStart}
       />
       <div
         className={clsx(styles.quarter3, styles.quarter)}
         onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        // onDragStart={handleDragStart}
       >
         <Video videoRef={videoRef} />
       </div>
       <div
         className={clsx(styles.quarter4, styles.quarter)}
         onDrop={handleDrop}
-      >
-        4
-      </div>
+        onDragOver={handleDragOver}
+        // onDragStart={handleDragStart}
+      />
     </div>
   );
 };
